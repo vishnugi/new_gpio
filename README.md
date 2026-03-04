@@ -24,7 +24,8 @@
 - [Overview](#-overview)
 - [Features](#-features)
 - [Tech Stack](#-tech-stack)
-- [Architecture](#-architecture)
+- [Architecture](#architecture)
+- [Workflow](#workflow)
 - [Screenshots](#-screenshots)
 - [Getting Started](#-getting-started)
   - [Prerequisites](#prerequisites)
@@ -34,7 +35,7 @@
 - [Project Structure](#-project-structure)
 - [API Reference](#-api-reference)
 - [Testing](#-testing)
-- [CI/CD Pipeline](#-cicd-pipeline)
+- [CI Pipeline](#-cicd-pipeline)
 - [Configuration](#-configuration)
 - [Contributing](#-contributing)
 - [License](#-license)
@@ -57,7 +58,7 @@
 - 🗄️ **MySQL Persistence** — All readings stored with timestamps
 - 📝 **Rotating Log Files** — Log rotation at 5MB with 3 backups
 - 🧪 **Full Test Suite** — Unit tests with mocking + integration tests
-- ⚙️ **CI/CD Ready** — GitHub Actions pipeline across Python 3.10, 3.11, 3.12
+- ⚙️ **CI Ready** — GitHub Actions pipeline across Python 3.10, 3.11, 3.12
 - 🔐 **Env-Based Config** — Secrets managed via `.env` (never committed)
 
 ---
@@ -69,45 +70,44 @@
 | ![Python](https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white&style=flat-square) **Language** | Python 3.10+ |
 | ![Flask](https://img.shields.io/badge/-Flask-000000?logo=flask&logoColor=white&style=flat-square) **Web Framework** | Flask 2.x |
 | ![MySQL](https://img.shields.io/badge/-MySQL-4479A1?logo=mysql&logoColor=white&style=flat-square) **Database** | MySQL 8.0 |
-| ![GitHub Actions](https://img.shields.io/badge/-GitHub_Actions-2088FF?logo=githubactions&logoColor=white&style=flat-square) **CI/CD** | GitHub Actions |
+| ![GitHub Actions](https://img.shields.io/badge/-GitHub_Actions-2088FF?logo=githubactions&logoColor=white&style=flat-square) **CI** | GitHub Actions |
 | ![pytest](https://img.shields.io/badge/-pytest-0A9EDC?logo=pytest&logoColor=white&style=flat-square) **Testing** | pytest + pytest-cov |
 | ![dotenv](https://img.shields.io/badge/-.env-ECD53F?logo=dotenv&logoColor=black&style=flat-square) **Config** | python-dotenv |
 | ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?logo=html5&logoColor=white&style=flat-square) **Frontend** | HTML5 + Vanilla JS |
 
 ---
 
-## 🏗️ Architecture & Workflow
-
-| Architecture |
+## 🏗️ Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────┐
 │                       GPIO System                       │
 │                                                         │
 │  ┌──────────────┐    INSERT     ┌──────────────────┐    │
-│  │  simulator.py │ ──────────►  │   MySQL Database  │   │
-│  │  (3 devices)  │              │   (readings table)│   │
-│  └──────────────┘              └────────┬─────────┘     │
+│  │  simulator.py │ ──────────►  │  MySQL Database  │    │
+│  │  (3 devices)  │              │ (readings table) │    │
+│  └──────────────┘               └────────┬─────────┘    │
 │                                          │ SELECT       │
-│  ┌──────────────────────────────────┐   │               │
-│  │           Flask App (app.py)      │ ◄─┘              │
+│  ┌──────────────────────────────────┐    │              │
+│  │           Flask App (app.py)     │  ◄─┘              │
 │  │  GET /         → dashboard.html  │                   │
 │  │  GET /api/data → JSON response   │                   │
 │  └────────────────┬─────────────────┘                   │
 │                   │ HTTP fetch (every 5s)               │
 │  ┌────────────────▼─────────────────┐                   │
-│  │       Browser Dashboard           │                  │
-│  │    Live updating HTML table       │                  │
+│  │       Browser Dashboard          │                   │
+│  │    Live updating HTML table      │                   │
 │  └──────────────────────────────────┘                   │
 └─────────────────────────────────────────────────────────┘
 ```
-| Workflow |
+
+## 🏗️ Workflow
+
+
 | ![Workflow](https://i.ibb.co/HJW4VYB/Untitled-design.gif) |
 ---
 
 ## 📸 Screenshots
-
-> **Add your screenshots here after running the app!**
 
 | Dashboard View |
 |:---:|
@@ -344,7 +344,7 @@ pytest tests/test_database.py -v
 
 ---
 
-## ⚙️ CI/CD Pipeline
+## ⚙️ CI Pipeline
 
 The project uses **GitHub Actions** for continuous integration.
 
