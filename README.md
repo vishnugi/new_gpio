@@ -84,8 +84,8 @@
 │                       GPIO System                       │
 │                                                         │
 │  ┌──────────────┐    INSERT     ┌──────────────────┐    │
-│  │  simulator.py │ ──────────►  │  MySQL Database  │    │
-│  │  (3 devices)  │              │ (readings table) │    │
+│  │ simulator.py │ ──────────►   │  MySQL Database  │    │
+│  │ (3 devices)  │               │ (readings table) │    │
 │  └──────────────┘               └────────┬─────────┘    │
 │                                          │ SELECT       │
 │  ┌──────────────────────────────────┐    │              │
@@ -111,7 +111,7 @@
 
 | Dashboard View |
 |:---:|
-| ![Dashboard](https://i.ibb.co/xq8Yq42y/Whats-App-Image-2026-03-04-at-4-42-04-PM.jpg) |
+| ![Dashboard](https://i.ibb.co/x8CB9CK8/Screenshot-from-2026-03-03-16-03-13.png) |
 
 *Live auto-refreshing table showing device ID, temperature, humidity, and timestamp.*
 
