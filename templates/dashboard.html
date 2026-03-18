@@ -4,9 +4,34 @@
     <title>GPIO - Real-Time Sensor Dashboard</title>
     <style>
         body { font-family: Arial; text-align: center; }
-        table { margin: auto; border-collapse: collapse; width: 80%; }
-        th, td { padding: 10px; border: 1px solid black; }
-        th { background-color: #4CAF50; color: white; }
+
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid black;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .online {
+            background-color: #c8f7c5;
+            color: green;
+            font-weight: bold;
+        }
+
+        .offline {
+            background-color: #f7c5c5;
+            color: red;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -20,6 +45,7 @@
         <th>Temperature</th>
         <th>Humidity</th>
         <th>Timestamp</th>
+        <th>Status</th>
     </tr>
 </table>
 
@@ -37,17 +63,21 @@ function fetchData() {
                     <th>Temperature</th>
                     <th>Humidity</th>
                     <th>Timestamp</th>
+                    <th>Status</th>
                 </tr>
             `;
 
             data.forEach(row => {
+                let statusClass = row.status === "ONLINE" ? "online" : "offline";
+
                 rows += `
                     <tr>
                         <td>${row.id}</td>
                         <td>${row.device_id}</td>
-                        <td>${row.temperature} °C</td>
-                        <td>${row.humidity} %</td>
+                        <td>${row.temperature !== null ? row.temperature + " °C" : "--"}</td>
+                        <td>${row.humidity !== null ? row.humidity + " %" : "--"}</td>
                         <td>${row.timestamp}</td>
+                        <td class="${statusClass}">${row.status}</td>
                     </tr>
                 `;
             });
