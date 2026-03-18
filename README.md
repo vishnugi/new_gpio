@@ -111,7 +111,7 @@
 
 | Dashboard View |
 |:---:|
-| ![Dashboard](https://i.ibb.co/x8CB9CK8/Screenshot-from-2026-03-03-16-03-13.png) |
+| ![Dashboard](https://i.ibb.co/b5VtzRkB/dashboard-op.png) |
 
 *Live auto-refreshing table showing device ID, temperature, humidity, and timestamp.*
 
